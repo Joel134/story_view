@@ -325,39 +325,70 @@ class StoryItem {
   factory StoryItem.hopeTheme(
     ImageProvider image, {
     Key? key,
-    Text? caption,
+    required Text descriptionText,
     bool shown = false,
-    bool roundedTop = true,
-    bool roundedBottom = false,
+    required Text header1,
+    Text? header2,
+    required Widget bottomImage,
     Duration? duration,
   }) {
     return StoryItem(
       Container(
-        key: key,
         decoration: BoxDecoration(
             color: Colors.grey[100],
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(roundedTop ? 8 : 0),
-              bottom: Radius.circular(roundedBottom ? 8 : 0),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(8),
+              bottom: Radius.circular(8),
             ),
             image: DecorationImage(
               image: image,
               fit: BoxFit.cover,
             )),
-        child: Container(
-          margin: EdgeInsets.only(
-            bottom: 16,
-          ),
-          padding: EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 8,
-          ),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              child: Image.asset('assets/story_logo.jpg'),
-              width: double.infinity,
-            ),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(24, 8, 8, 24),
+                //height: 500,
+                width: double.infinity,
+                color: Colors.transparent,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          header1,
+                          if (header2 != null) ...[
+                            header2,
+                          ],
+                          Container(
+                            width: 200,
+                            padding: const EdgeInsets.only(left: 12),
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                left: BorderSide(width: 4, color: Colors.white),
+                              ),
+                            ),
+                            child: descriptionText,
+                          ),
+                          SizedBox(
+                            height: 50,
+                          ),
+                        ],
+                      ),
+                      bottomImage
+                      // SvgPicture.asset(
+                      //   'assets/Logo.svg',
+                      //   height: 40,
+                      //   fit: BoxFit.fitHeight,
+                      // )
+                    ]),
+              ),
+            ],
           ),
         ),
       ),
