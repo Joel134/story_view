@@ -719,12 +719,16 @@ class StoryViewState extends State<StoryView> with TickerProviderStateMixin {
                   ),
                   Container(
                     margin: EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Stack(
+                      alignment: Alignment.center,
                       children: [
-                        widget.backIcon,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            widget.backIcon,
+                          ],
+                        ),
                         widget.headerText,
-                        SizedBox()
                       ],
                     ),
                   )
