@@ -322,6 +322,49 @@ class StoryItem {
         shown: shown,
         duration: duration ?? Duration(seconds: 3));
   }
+  factory StoryItem.hopeTheme(
+    ImageProvider image, {
+    Key? key,
+    Text? caption,
+    bool shown = false,
+    bool roundedTop = true,
+    bool roundedBottom = false,
+    Duration? duration,
+  }) {
+    return StoryItem(
+      Container(
+        key: key,
+        decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(roundedTop ? 8 : 0),
+              bottom: Radius.circular(roundedBottom ? 8 : 0),
+            ),
+            image: DecorationImage(
+              image: image,
+              fit: BoxFit.cover,
+            )),
+        child: Container(
+          margin: EdgeInsets.only(
+            bottom: 16,
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 8,
+          ),
+          child: Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+              child: Image.asset('assets/story_logo.jpg'),
+              width: double.infinity,
+            ),
+          ),
+        ),
+      ),
+      shown: shown,
+      duration: duration ?? Duration(seconds: 3),
+    );
+  }
 
   /// Shorthand for creating an inline story item from an image provider such as `AssetImage`
   /// or `NetworkImage`. However, the story continues to play while the image loads
