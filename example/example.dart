@@ -35,6 +35,8 @@ class Home extends StatelessWidget {
             Container(
               height: 300,
               child: StoryView(
+                backIcon: Icon(Icons.arrow_back),
+                headerText: Text('Success'),
                 controller: controller,
                 storyItems: [
                   StoryItem.text(
@@ -152,6 +154,8 @@ class _MoreStoriesState extends State<MoreStories> {
         title: Text("More"),
       ),
       body: StoryView(
+        backIcon: Icon(Icons.arrow_back),
+        headerText: Text('Success'),
         storyItems: [
           StoryItem.text(
             title: "I guess you'd love to see more of our food. That's great.",
