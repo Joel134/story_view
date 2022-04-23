@@ -366,7 +366,6 @@ class StoryItem {
                             header2,
                           ],
                           Container(
-                            width: 230,
                             padding: const EdgeInsets.only(left: 12),
                             decoration: const BoxDecoration(
                               border: Border(
