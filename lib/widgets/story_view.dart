@@ -350,7 +350,7 @@ class StoryItem {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                margin: EdgeInsets.fromLTRB(24, 8, 8, 24),
+                margin: EdgeInsets.fromLTRB(24, 8, 24, 24),
                 //height: 500,
                 width: double.infinity,
                 color: Colors.transparent,
