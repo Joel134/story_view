@@ -329,6 +329,8 @@ class StoryItem {
     bool shown = false,
     required Text header1,
     Text? header2,
+    Text? header3,
+    Widget? widget,
     required Widget bottomImage,
     Duration? duration,
   }) {
@@ -365,6 +367,9 @@ class StoryItem {
                           if (header2 != null) ...[
                             header2,
                           ],
+                          if (header3 != null) ...[
+                            header3,
+                          ],
                           Container(
                             padding: const EdgeInsets.only(left: 12),
                             decoration: const BoxDecoration(
@@ -374,6 +379,9 @@ class StoryItem {
                             ),
                             child: descriptionText,
                           ),
+                          if (widget != null) ...[
+                            widget,
+                          ],
                           SizedBox(
                             height: 50,
                           ),
