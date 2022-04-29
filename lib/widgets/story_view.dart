@@ -748,7 +748,7 @@ class StoryViewState extends State<StoryView> with TickerProviderStateMixin {
               heightFactor: 1,
               child: GestureDetector(
                 onTapDown: (details) {
-                  widget.controller.pause();
+                  widget.controller.dispose();
                 },
                 onTapCancel: () {
                   widget.controller.play();
