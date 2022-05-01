@@ -398,6 +398,73 @@ class StoryItem {
       duration: duration ?? Duration(seconds: 3),
     );
   }
+  factory StoryItem.report(
+    ImageProvider image, {
+    Key? key,
+    bool shown = false,
+    required Text header1,
+    Widget? widget,
+    Duration? duration,
+  }) {
+    return StoryItem(
+      Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(8),
+                  bottom: Radius.circular(8),
+                ),
+                image: const DecorationImage(
+                  image: AssetImage('assets/cover.jpg'),
+                  fit: BoxFit.cover,
+                )),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.4),
+                  spreadRadius: 20,
+                  blurRadius: 10,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.4),
+                  ),
+                  margin: EdgeInsets.all(12),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 90.0, sigmaY: 90.0),
+                      child: Container(
+                        margin: const EdgeInsets.all(24),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            color: Colors.transparent),
+                        child: widget,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+      shown: shown,
+      duration: duration ?? Duration(seconds: 3),
+    );
+  }
 
   /// Shorthand for creating an inline story item from an image provider such as `AssetImage`
   /// or `NetworkImage`. However, the story continues to play while the image loads
