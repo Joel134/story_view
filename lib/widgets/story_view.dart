@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 
@@ -399,65 +400,53 @@ class StoryItem {
     );
   }
   factory StoryItem.report(
-    ImageProvider image, {
+    String imageUrl, {
     Key? key,
     bool shown = false,
-    required Text header1,
     Widget? widget,
     Duration? duration,
   }) {
     return StoryItem(
       Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(8),
-                  bottom: Radius.circular(8),
+          CachedNetworkImage(
+            imageUrl: imageUrl,
+            fit: BoxFit.scaleDown,
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.contain,
                 ),
-                image: const DecorationImage(
-                  image: AssetImage('assets/cover.jpg'),
-                  fit: BoxFit.cover,
-                )),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.4),
-                  spreadRadius: 20,
-                  blurRadius: 10,
-                  offset: Offset(0, 2), // changes position of shadow
-                ),
-              ],
+              ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.4),
-                  ),
-                  margin: EdgeInsets.all(12),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 90.0, sigmaY: 90.0),
-                      child: Container(
-                        margin: const EdgeInsets.all(24),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            color: Colors.transparent),
-                        child: widget,
-                      ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 100.0),
+                    child: Container(
+                      margin: const EdgeInsets.all(24),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.transparent),
+                      child: widget,
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),
