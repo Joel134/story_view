@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart' show IterableExtension;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/story_controller.dart';
@@ -410,6 +411,10 @@ class StoryItem {
       Stack(
         children: [
           CachedNetworkImage(
+            placeholder: (context, url) => CupertinoActivityIndicator(),
+            errorWidget: (context, url, error) =>
+                Icon(Icons.image_not_supported),
+            fadeInDuration: Duration(milliseconds: 200),
             imageUrl: imageUrl,
             fit: BoxFit.scaleDown,
             imageBuilder: (context, imageProvider) => Container(
