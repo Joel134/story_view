@@ -400,6 +400,29 @@ class StoryItem {
       duration: duration ?? Duration(seconds: 3),
     );
   }
+  factory StoryItem.hopeIntro(
+    ImageProvider image, {
+    Key? key,
+    Duration? duration,
+    bool shown = false,
+  }) {
+    return StoryItem(
+      Container(
+        decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(8),
+              bottom: Radius.circular(8),
+            ),
+            image: DecorationImage(
+              image: image,
+              fit: BoxFit.cover,
+            )),
+      ),
+      shown: shown,
+      duration: duration ?? Duration(seconds: 3),
+    );
+  }
   factory StoryItem.report(
     String imageUrl, {
     Key? key,
